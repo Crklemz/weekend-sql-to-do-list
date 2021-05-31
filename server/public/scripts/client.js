@@ -7,6 +7,8 @@ $( document ).ready( function(){
 //click listeners
 $('#submitBtn').on('click', handleSubmit);
 $('#taskTable').on('click', '.completeBtn', handleCompleteClick);
+$('#taskTable').on('click', '.deleteBtn', deleteTaskHandler);
+
 
 });//end document ready
 
@@ -99,3 +101,19 @@ function completedTask(taskId, status){
     console.log(err);
   });
 }//end completedTask
+
+function deleteTaskHandler() {
+  deleteTask($(this).data("id"))
+}//deleteTaskHandler
+
+function deleteTask(taskId) {
+  $.ajax({
+    method: 'DELETE',
+    url: `/tasks/${taskId}`
+  }).then(response => {
+    console.log(`deleted task with id of ${taskId}`);
+    getTasks();
+  }).catch(err => {
+    alert('there was a problem deleting that task', err);
+  });
+}//end deleteTask
