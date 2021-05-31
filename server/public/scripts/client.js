@@ -5,18 +5,34 @@ $( document ).ready( function(){
     
   getTasks();
 //click listeners
-$('#submitBtn').on('click', submitTask);
-
+$('#submitBtn').on('click', handleSubmit);
 
 });//end document ready
 
-//submit new task to list
-function submitTask(newTask) {
-  console.log('in submitTask, new task is -->', newTask);
- //post 
-  
+function handleSubmit() {
+  console.log('Submit button clicked');
+  let task = {
+  task: $('#addTaskIn').val(),
+  date: $('#addDateIn').val(),
+  complete: false
+  };
+  submitTask(task);
+}//end handleSubmit
 
-};//end submitTask
+// adds a task to the database
+function submitTask(newTask) {
+  $.ajax({
+    type: 'POST',
+    url: '/tasks',
+    data: newTask,
+    }).then(function(response) {
+      console.log('Response from server.', response);
+      getTasks();
+    }).catch(function(error) {
+      console.log('Error in POST', error)
+      alert('Unable to add task');
+    });
+}//end submitTask
 
 function renderDOM(taskArray) {
   console.log('in renderDOM');
