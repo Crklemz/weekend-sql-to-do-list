@@ -47,7 +47,7 @@ function renderDOM(taskArray) {
     let task = taskArray[i];
 
     $('#taskTable').append(`
-      <tr>
+      <tr class="taskRow">
         <td>${task.task}</td>
         <td>${task.date}</td>
         <td>${task.complete}</td>
@@ -55,6 +55,9 @@ function renderDOM(taskArray) {
         <td><button class="deleteBtn" data-id="${task.id}">Delete</button></td>
       </tr>
     `)
+    if(`${task.complete}` === true) {
+      $(".taskRow").addClass("winner");
+    }
   }//end for loop
 }//end renderDOM
 
@@ -117,3 +120,4 @@ function deleteTask(taskId) {
     alert('there was a problem deleting that task', err);
   });
 }//end deleteTask
+

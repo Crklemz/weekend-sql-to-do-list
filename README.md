@@ -9,11 +9,11 @@ Your project description goes here. What problem did you solve? How did you solv
 Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
 
 
-- [] front end
-    -[] create a task
-    -[] tasks have option to complete or delete
+- [x] front end
+    -[x] create a task
+    -[x] tasks have option to complete or delete
     -[] when complete is clicked, visibly show that task has been completed
-    -[] delete removes from front end and database
+    -[x] delete removes from front end and database
 -[] styling
     -[] background color
     -[] font family and size
