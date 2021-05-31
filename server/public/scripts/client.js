@@ -20,6 +20,9 @@ function handleSubmit() {
   complete: false
   };
   submitTask(task);
+  //empty inputs
+  $('#addTaskIn').val('');
+  $('#addDateIn').val('');
 }//end handleSubmit
 
 // adds a task to the database
@@ -46,6 +49,8 @@ function renderDOM(taskArray) {
   for(let i = 0; i < taskArray.length; i++) {
     let task = taskArray[i];
 
+    task.date = task.date.slice(0,10);
+
     $('#taskTable').append(`
       <tr class="taskRow">
         <td>${task.task}</td>
@@ -55,8 +60,8 @@ function renderDOM(taskArray) {
         <td><button class="deleteBtn" data-id="${task.id}">Delete</button></td>
       </tr>
     `)
-    if(`${task.complete}` === true) {
-      $(".taskRow").addClass("winner");
+    if(`${task.complete}` === 'true') {
+      $(".taskRow").addClass("completed");
     }
   }//end for loop
 }//end renderDOM

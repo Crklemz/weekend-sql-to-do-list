@@ -12,10 +12,10 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
 - [x] front end
     -[x] create a task
     -[x] tasks have option to complete or delete
-    -[] when complete is clicked, visibly show that task has been completed
+    -[x] when complete is clicked, visibly show that task has been completed
     -[x] delete removes from front end and database
--[] styling
-    -[] background color
-    -[] font family and size
-    -[] text color & or background color of tasks *to show whether or not they have been completed*
+-[x] styling
+    -[x] background color
+    -[x] font family and size
+    -[x] text color & or background color of tasks *to show whether or not they have been completed*
     
