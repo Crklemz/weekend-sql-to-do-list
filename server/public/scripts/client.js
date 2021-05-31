@@ -3,6 +3,7 @@ console.log('js');
 $( document ).ready( function(){
     console.log( 'JQ' );
     
+  getTasks();
 //click listeners
 $('#submitBtn').on('click', submitTask);
 
