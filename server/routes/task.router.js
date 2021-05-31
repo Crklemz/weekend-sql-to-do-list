@@ -34,8 +34,34 @@ taskRouter.post('/', (req, res) => {
  })
  });//end post
 
-//PUT
 
+//PUT
+taskRouter.put('/:id', (req, res) => {
+    let taskId = req.params.id;//setting task id dynamically
+    console.log('taskId in taskRouter', taskId);
+    
+    let completedTask = req.body.complete
+    console.log(req.body);
+    console.log(completedTask);
+    let queryString = '';
+    
+    if (completedTask === 'true'){//SQL statement to update if task is complete
+        queryString = `UPDATE "tasks" SET "complete"=true WHERE "tasks".id=$1;`;
+        console.log('in taskrouterPUT, queryString is', queryString);  
+    } else {
+        queryString = `UPDATE "tasks" SET "complete"=false WHERE "tasks".id=$1;`;
+    }
+        
+    pool.query(queryString, [taskId])
+        .then(response => {
+            console.log(response.rowCount);
+            res.sendStatus(202);//sends info to SQL DB for update and sends back 202
+        })
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);//if it doesn't work get 500
+        });
+});//end put
 
 //DELETE
 

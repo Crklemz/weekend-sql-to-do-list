@@ -6,6 +6,7 @@ $( document ).ready( function(){
   getTasks();
 //click listeners
 $('#submitBtn').on('click', handleSubmit);
+$('#taskTable').on('click', '.completeBtn', handleCompleteClick);
 
 });//end document ready
 
@@ -69,3 +70,32 @@ function getTasks() {
     console.log('error in GET on client.js', error);
   });
 }//end getTasks
+
+function handleCompleteClick(){
+
+  if ($(this).data('complete') === false) {
+
+    completedTask($(this).data('id'), 'true');
+  } else {
+    completedTask($(this).data('id'), 'false');
+  }
+};//end handleCompleteClick
+
+function completedTask(taskId, status){
+  console.log(`in completedTask status is ${status}`);
+  
+  $.ajax({
+    method: "PUT",
+    url: `/tasks/${taskId}`,
+    data: {
+      complete: `${status}`
+    }
+  })
+  .then(response => {
+    console.log('task completed');
+    getTasks();
+  })
+  .catch(err => {
+    console.log(err);
+  });
+}//end completedTask
